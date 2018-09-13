@@ -1,0 +1,25 @@
+from twitterscraper import query_tweets
+import csv
+import sys
+import unicodecsv as csv
+import datetime as dt
+#from dateutil import parser
+
+if __name__ == '__main__':
+	query = 
+sys.argv[1]
+
+
+    start = dt.datetime.now()
+    i = 0
+
+    with open(sys.argv[1] + '-' + sys.argv[2] + '.csv', 'wb') as csvfile:
+        tweetwriter = csv.writer(csvfile, delimiter=',',
+                            quotechar='\"', quoting=csv.QUOTE_ALL, encoding='utf-8')
+        for tweet in query_tweets(query='"' + sys.argv[1] + '"', begindate=dt.datetime.strptime(sys.argv[2],'%Y-%m-%d').date(),enddate=dt.datetime.strptime(sys.argv[3],'%Y-%m-%d').date(),lang='en'):
+            tweetwriter.writerow([tweet.id, tweet.timestamp, tweet.user, tweet.fullname, tweet.text, tweet.replies, tweet.retweets, tweet.likes])
+            i = i + 1
+    end = dt.datetime.now()
+    print(i)
+    print(end-start)
+

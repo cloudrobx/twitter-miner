@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: message-queue
+    component: worker
+    chapter: jobs
+  name: workers
+spec:
+  parallelism: 30
+  template:
+    metadata:
+      labels:
+        app: message-queue
+        component: worker
+        chapter: jobs
+    spec:
+      containers:
+      - name: worker
+        image: "gcr.io/isye-7406/worker:latest"
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "501m"
+      restartPolicy: Never

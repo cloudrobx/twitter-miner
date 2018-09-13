@@ -1,0 +1,5 @@
+twitterscraper
+unicodecsv
+tweepy
+pandas
+pandas-gbq
